@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        Birthday Email-->
+        <record id="birthday_email_template" model="mail.template">
+            <field name="name">Birthday Email Template</field>
+            <field name="email_from">${object.company_id and object.company_id.email or ''}</field>
+            <field name="subject">Happy Birthday ${object.name or ''}</field>
+            <field name="email_to">${object.email|safe}</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="body_html">
+                <![CDATA[
+                    Dear ${object.name or ''},
+
+                    Happy Birthday! We wanted to take a moment to wish you a fantastic day filled with joy and wonderful memories.
+
+                    To celebrate your special day, we have a special gift for you. As our valued customer, we are delighted to offer you a [selected_product] at a discounted price of [discount_percentage]% off. This is our way of expressing our gratitude for your loyalty and support.
+
+                    Simply visit our website or contact our sales team to redeem this exclusive offer. Don't miss out on this birthday treat!
+
+                    Once again, we wish you a very happy birthday and hope your day is as amazing as you are.
+
+                    Best regards,
+                    ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

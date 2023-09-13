@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="custom_footer" inherit_id="website.layout" name="Footer" active="True">
+        <xpath expr="//div[@id='footer']" position="replace">
+                <div id="footer" class="oe_structure pt40 pb16" t-ignore="true" t-if="not no_footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 pt24 pb24">
+                                <h5 class="mb-3">Open Hours</h5>
+                                <p>Monday to Friday 09:00-20:00</p>
+                                <p>Saturday: 09:00-18:00</p>
+                                <p>Sunday: 09:00-18:00</p>
+                            </div>
+                            <div class="col-md-4 pt24 pb24">
+                                <h5 class="mb-3">About Us</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor
+                                    incididunt ut labore et dolore
+                                </p>
+                            </div>
+                            <div class="col-md-4 pt24 pb24">
+                                <h5 class="mb-3">Contact us</h5>
+                                <p>Uthman Ibn Affan Rd, 8113 2169, طريق عثمان بن عفان، الملك عبدالله، الرياض 12451,
+                                    Riyadh
+                                </p>
+                                <p>Email: example@gmail.com</p>
+                                <p>+966 50 993 3225</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </xpath>
+    </template>
+    <template id="snippet_options" inherit_id="website.snippet_options">
+        <xpath expr="//we-select[@data-variable='footer-template']/we-button" position="attributes">
+            <attribute name="data-customize-website-views">website_custom.custom_footer</attribute>
+        </xpath>
+    </template>
+</odoo>

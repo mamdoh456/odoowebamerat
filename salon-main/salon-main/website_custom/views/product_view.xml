@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_template_form_view_appointment" model="ir.ui.view">
+        <field name="name">product.template.product.form.appointment</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='general_information']" position="after">
+                <page string="Appointment" name="appointment_page" attrs="{'invisible': [('type', '!=', 'service')]}">
+                    <group>
+                        <group>
+                            <field name="time" widget="float_time" attrs="{'required': [('type', '=', 'service')]}"/>
+                            <field name="home_booking"/>
+                            <field name="local_reservation"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product.category.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="after">
+                <field name="image" widget="image" class="oe_avatar"/>
+            </div>
+        </field>
+    </record>
+
+</odoo>

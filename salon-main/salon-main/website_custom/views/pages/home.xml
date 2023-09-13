@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="home_services">
+        <section class="s_home_services py120">
+            <div class="container-fluid">
+                <div class="title_sub_heading text-center pb32">
+                    <h4 class="sub_title">We are awesome</h4>
+                    <h1 class="mb-3">All Services</h1>
+                    <img src="/website_custom/static/src/img/section-heading-separetor.png" class="img-fluid"/>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card-style-1 bg_01 mt32">
+                            <img src="/website_custom/static/src/img/post-beautify-8.jpg" class="img-fluid mb-2"/>
+                            <div class="card-style-1-body">
+                                <h4 class="card-style-1-title text-uppercase mt-3">Home booking</h4>
+                                <p class="card-style-1-text mt-3">Some quick example text to build on the card title and
+                                    make up the
+                                    bulk of the card's content.
+                                </p>
+                                <a href="/appointment/home_booking/services"
+                                   class="btn btn-secondary rounded-pill  mt-3">View Services
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card-style-1 bg_01 mt32">
+                            <img src="/website_custom/static/src/img/post-beautify-7.jpg" class="img-fluid mb-2"/>
+                            <div class="card-style-1-body">
+                                <h4 class="card-style-1-title text-uppercase mt-3">Local reservation</h4>
+                                <p class="card-style-1-text mt-3">Some quick example text to build on the card title and
+                                    make up the
+                                    bulk of the card's content.
+                                </p>
+                                <a href="/appointment/local_reservation/services"
+                                   class="btn btn-secondary rounded-pill mt-3">View Services
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card-style-1 bg_01 mt32">
+                            <img src="/website_custom/static/src/img/post-beautify-6.jpg" class="img-fluid mb-2"/>
+                            <div class="card-style-1-body">
+                                <h4 class="card-style-1-title text-uppercase mt-3">Shop</h4>
+                                <p class="card-style-1-text mt-3">Some quick example text to build on the card title and
+                                    make up the
+                                    bulk of the card's content.
+                                </p>
+                                <a href="/shop" class="btn btn-secondary rounded-pill mt-3">View products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="about_us">
+        <section class="s_about_us bg_01">
+            <div class="container">
+                <div class="title_sub_heading text-center pb32">
+                    <h4 class="sub_title">We are awesome</h4>
+                    <h1 class="mb-3">About Us</h1>
+                    <img src="/website_custom/static/src/img/section-heading-separetor.png" class="img-fluid"/>
+                </div>
+                <div class="row mt32 pt32 align-items-center">
+                    <div class="col-md-6">
+                        <div class="video_content">
+                            <div class="img_video">
+                                <img src="/website_custom/static/src/img/bg_video_play.png" class="img-fluid"/>
+                                <button type="button" class="btn btn-primary video-btn" id="video-btn"
+                                        data-toggle="modal"
+                                        data-src="/website_custom/static/src/videos/vid_about.mp4"
+                                        data-target="#modalVideoAbout">
+                                    <i class="fa fa-play"></i>
+                                </button>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade modal_video" id="modalVideoAbout" tabindex="-1" role="dialog"
+                                 aria-labelledby="modalVideoAboutTitle" aria-hidden="true">
+
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="false">&amp;times;</span>
+                                            </button>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="" id="video"
+                                                        allowscriptaccess="always" allow="autoplay"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="title_sub_heading">
+                            <h4 class="sub_title">Beauty Press suitable for</h4>
+                            <h3>Any spa, beauty, yoga website</h3>
+
+                        </div>
+                        <div class="text_content mt32">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <ul class="element-icon-list-items mt32">
+                                <li class="element-icon-list-item">
+                                    <span class="element-icon-list-icon">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span class="element-icon-list-text">Home booking</span>
+                                </li>
+                                <li class="element-icon-list-item">
+                                    <span class="element-icon-list-icon">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span class="element-icon-list-text">Local reservation</span>
+                                </li>
+                                <li class="element-icon-list-item">
+                                    <span class="element-icon-list-icon">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span class="element-icon-list-text">Shop</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="custom_homepage" name="Custom Home page" inherit_id="website.homepage">
+        <xpath expr="//div[@id='wrap']" position="inside">
+            <t t-call="website_custom.home_services"/>
+            <t t-call="website_custom.about_us"/>
+        </xpath>
+    </template>
+</odoo>

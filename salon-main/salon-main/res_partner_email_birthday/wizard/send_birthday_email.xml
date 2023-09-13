@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="birthday_gift_card_wizard_form" model="ir.ui.view">
+        <field name="name">birthday.gift.card.wizard.form</field>
+        <field name="model">birthday.gift.card.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Send Gift Card">
+                <group>
+                    <field name="product" domain="[('gift_ok','=',True)]"/>
+                </group>
+                <footer>
+                    <button name="action_send_gift_card" string="Send Gift Card" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_birthday_gift_card_wizard_form" model="ir.actions.act_window">
+        <field name="name">Birthday Gift Card</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">birthday.gift.card.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="birthday_gift_card_wizard_form"/>
+    </record>
+
+</odoo>

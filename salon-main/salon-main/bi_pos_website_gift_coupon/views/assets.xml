@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- Add custom js for POS Coupons and Gift Voucher -->	    
+		<template id="assets_for_bi_pos_website_gift_coupon" inherit_id="point_of_sale.assets">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="/bi_pos_website_gift_coupon/static/src/css/custom.css"/>
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/custom.js" />
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/models.js"/>
+				
+				<!-- Popups -->
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Popups/AfterCreateCouponPopup.js"></script>
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Popups/CouponConfigPopup.js"></script>
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Popups/CreateCouponPopup.js"></script>
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Popups/SelectExistingCouponPopup.js"></script>
+
+				<!-- - -  Screens - - - -->
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Screens/CouponPrint.js"></script>
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Screens/CouponReceiptScreen.js"></script>
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Screens/GiftCouponButton.js"></script>
+				<script type="text/javascript" src="/bi_pos_website_gift_coupon/static/src/js/Screens/multiselect.js"></script>
+
+			</xpath>
+		</template>
+
+	</data>
+</odoo>

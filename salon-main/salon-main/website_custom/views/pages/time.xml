@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <template id="mini_invoice_book_time" name="Invoice book time">-->
+<!--        <div class="invoice_book_initial">-->
+<!--            <a href="/" t-attf-class="logo_invoice_book">-->
+<!--                <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"-->
+<!--                      t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>-->
+<!--            </a>-->
+<!--            <div class="header_invoice_book">-->
+<!--                <h5>Lapalma</h5>-->
+<!--                <p>Uthman Ibn Affan Rd, 8113 2169, طريق عثمان بن عفان، الملك عبدالله، الرياض 12451,-->
+<!--                    Riyadh-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="scroll_invoice_book">-->
+<!--                <ul class="list_product_invoice_book" t-if="invoice['products']">-->
+<!--                    <li t-foreach="invoice['products']" t-as="product">-->
+<!--                        <input class="d-none" type="checkbox" checked="checked"-->
+<!--                               t-attf-id="checkboxProduct#{product['id']}"-->
+<!--                               t-att-value="product['id']" t-attf-name="checkboxProduct#{product['id']}"/>-->
+<!--                        <div class="d-flex align-items-start">-->
+<!--                            <div class="box_info_product">-->
+<!--                                <p class="mb-1" t-esc="product['name']"/>-->
+<!--                                <p class="text-muted m-0">-->
+<!--                                    <t t-esc="product['date_time']"/>-->
+<!--                                    <t t-if="product['staff_name']">Female only with-->
+<!--                                        <t t-esc="product['staff_name']"/>-->
+<!--                                    </t>-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                            <div class="box_price_product ml-auto text-right">SAR-->
+<!--                                <t t-esc="product['list_price']"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                <div class="no_service_selected text-muted text-center" t-else="">No services selected-->
+<!--                    yet-->
+<!--                </div>-->
+<!--                <div class="footer_invoice_book">-->
+<!--                    <div class="d-flex align-items-start">-->
+<!--                        <h6>Total</h6>-->
+<!--                        <h6 class="ml-auto text-right">-->
+<!--                            <span itemprop="priceCurrency" t-esc="website.currency_id.name"/>-->
+<!--                            <span t-esc="invoice['total']"/>-->
+<!--                        </h6>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="border_circle_invoice"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </template>-->
+
+    <template id="appointment_booking_time" name="Appointment booking time">
+        <t t-call="website.layout">
+
+            <t t-set="body_classname" t-value="'book_step_page'"/>
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div id="wrap">
+                <div class="header_booking_page">
+                    <div class="container">
+                        <div class="position-relative">
+                            <div class="prev_step_booking">
+                                <i class="fa fa-arrow-left"/>
+                            </div>
+                            <div class="close_booking">
+                                <a href="/">
+                                    <i class="fa fa-times"/>
+                                </a>
+                            </div>
+                            <div class="title_current_step">
+                                <span class="text-step">Step 3 of 4</span>
+                                <h3>Select time with
+                                    <t t-esc="coiffure.name"/>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content_booking_page">
+                    <form t-att-action="action_url" method="post"
+                          role="form" id="form_time">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="coiffure_id" t-att-value="coiffure.id"/>
+                        <input type="hidden" name="slot_date" t-att-value="slot_date"/>
+                        <input type="hidden" name="schedule_slot_id"/>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <t t-if="len(slots_data)>0">
+                                        <div class="pos-sticky tabs_loading js_loading">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                        <div class="tabs_scroll js_tabs_scroll d-none">
+                                            <div class="pos-sticky">
+                                                <div class="scroll_header">
+                                                    <div class="scroll_header_content">
+                                                        <h6 class="month">May</h6>
+                                                        <div id="timeScrollTabs"
+                                                             class="scroll_tabs_time">
+                                                            <t t-foreach="slots_data" t-as="slot_id">
+                                                                <t t-set="slot_data" t-value="slots_data[slot_id]"/>
+                                                                <a href="#" t-attf-rel="slot#{slot_data['id']}">
+                                                                    <span class="text-muted"
+                                                                          t-esc="slot_data['date'].strftime('%a')"/>
+                                                                    <br/>
+                                                                    <span class=""
+                                                                          t-esc="slot_data['date'].strftime('%d')"/>
+                                                                </a>
+                                                            </t>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <t t-foreach="slots_data" t-as="slot_id">
+                                                    <t t-set="slot_data" t-value="slots_data[slot_id]"/>
+                                                    <div class="card-box" t-attf-id="slot#{slot_data['id']}"
+                                                         t-att-data-slotdate-id="slot_data['id']">
+                                                        <t t-if="len(slot_data['slots'])>0">
+                                                            <div class="card-box-item bg-hover-1 js_appointment_slot"
+                                                                 t-foreach="slot_data['slots']"
+                                                                 t-as="slot" t-att-data-slotline-id="slot.id">
+                                                                <div class="card-box-body">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <h6 t-esc="slot.name" class="px-3"/>
+                                                                        <div class="ml-auto" style="font-size:24px">
+                                                                            <i class="fa fa-angle-right"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <div class="card-box-item">
+                                                                <div class="card-box-body">
+                                                                    <p class="m-0 text-center">You cannot book this day,
+                                                                        please
+                                                                        choose another day
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="pos-sticky tabs_loading pt32 pb32 text-center">
+                                            <p class="text-muted pt32 pb32">
+                                                No slots available currently
+                                            </p>
+                                        </div>
+                                    </t>
+                                </div>
+                                <div class="col-lg-4 d-none d-lg-block">
+                                    <t t-call="website_custom.invoice_appointment_book"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

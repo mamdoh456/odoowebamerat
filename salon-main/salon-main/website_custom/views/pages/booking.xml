@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mini_invoice_book" name="Invoice book">
+        <div class="invoice_book_initial">
+            <a href="/" t-attf-class="logo_invoice_book">
+                <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"
+                      t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
+            </a>
+            <div class="header_invoice_book">
+                <h5>Lapalma</h5>
+                <p>Uthman Ibn Affan Rd, 8113 2169, طريق عثمان بن عفان، الملك عبدالله، الرياض 12451,
+                    Riyadh
+                </p>
+            </div>
+            <div class="scroll_invoice_book">
+                <div id="js_list_product_invoice_book"/>
+                <div class="no_service_selected text-muted text-center js_no_service_selected">No services selected
+                    yet
+                </div>
+                <div class="footer_invoice_book">
+                    <div class="d-flex align-items-start">
+                        <h6>Total</h6>
+                        <h6 class="ml-auto text-right">
+                            <span itemprop="priceCurrency" t-esc="website.currency_id.name"/>
+                            <span id="js_total_invoice_book">0</span>
+                        </h6>
+                    </div>
+                </div>
+                <div class="border_circle_invoice"/>
+            </div>
+        </div>
+    </template>
+
+    <template id="appointment_booking" name="Appointment booking">
+        <t t-call="website.layout">
+
+            <t t-set="body_classname" t-value="'book_step_page'"/>
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div id="wrap">
+                <div class="content_step">
+                    <div class="header_booking_page">
+                        <div class="container">
+                            <div class="position-relative">
+                                <div class="prev_step_booking">
+                                    <i class="fa fa-arrow-left"/>
+                                </div>
+                                <div class="close_booking">
+                                    <a href="/">
+                                        <i class="fa fa-times"/>
+                                    </a>
+                                </div>
+                                <div class="title_current_step">
+                                    <span class="text-step">Step 1 of 4</span>
+                                    <h3>Select services</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_booking_page">
+                        <form t-attf-action="/appointment/#{appointment_type}/booking/staff" method="post" role="form"
+                              id="form_book">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-lg-8">
+                                        <div id="scrollTabs" class="scroll_tabs_theme_light scroll_tabs_book">
+                                            <t t-foreach="categories" t-as="categorie">
+                                                <a t-attf-href="#categ#{categorie.id}">
+                                                    <t t-esc="categorie.name"/>
+                                                </a>
+                                            </t>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="availablityStaffModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="availablityStaffModalTitle" aria-hidden="true"
+                                             data-backdrop="static">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="availablityStaffModalLongTitle">
+                                                            <i class="fa fa-info"></i>
+                                                            Info
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        No staff available for this service.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <t t-foreach="products_by_categ" t-as="categ">
+                                            <section t-attf-id="categ#{categ['id']}">
+                                                <div class="box_list_products">
+                                                    <h3 t-esc="categ['name']"/>
+                                                    <div class="box_product card-box">
+                                                        <div t-att-class="'form-check card-box-item' + (' disabled' if product['disabled'] else '')"
+                                                             t-foreach="categ['products']"
+                                                             t-as="product">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   t-attf-id="checkboxProduct#{product['id']}"
+                                                                   t-att-value="product['id']"
+                                                                   t-att-checked="product['checked']"
+                                                                   t-att-disabled="product['disabled']"
+                                                                   t-attf-name="checkboxProduct#{product['id']}"/>
+                                                            <label class="form-check-label card-box-body d-flex align-items-start"
+                                                                   t-attf-for="checkboxProduct#{product['id']}">
+                                                                <span class="st_checkbox">
+                                                                    <i class="fa fa-check"/>
+                                                                </span>
+                                                                <div class="box_info_product">
+                                                                    <h6 class="mb-1" t-esc="product['name']"/>
+                                                                    <p class="text-muted m-0" t-esc="product['time']"/>
+                                                                </div>
+                                                                <div class="box_price_product ml-auto">
+                                                                    <span itemprop="priceCurrency"
+                                                                          t-esc="website.currency_id.name"/>
+                                                                    <t t-esc="product['list_price']"/>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </t>
+                                    </div>
+                                    <div class="col-12 col-lg-4 d-none d-lg-block">
+                                        <t t-call="website_custom.mini_invoice_book"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box_action_book js_box_action_book">
+                                <div class="container text-right">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="py-3 text-left">
+                                            <p class="my-0 text-muted d-block d-lg-none"
+                                               id="js_nbr_product_invoice_book">0 service
+                                            </p>
+                                            <p class="my-0 d-block d-lg-none">SAR
+                                                <span id="js_total_invoice_book_2">0</span>
+                                            </p>
+                                        </div>
+                                        <div class="py-3 text-right">
+                                            <button type="submit" class="btn btn-tripartite rounded-pill">Book now
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

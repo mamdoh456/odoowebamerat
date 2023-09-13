@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data >
+        <record id="product_category_appointment" model="product.category">
+            <field name="name">Appointment</field>
+        </record>
+        <record id="product_category_hair" model="product.category">
+            <field name="parent_id" ref="product_category_appointment"/>
+            <field name="name">Hair</field>
+            <field name="image" type="base64" file="website_custom/static/src/img/hair1.png"/>
+        </record>
+        <record id="product_category_nails" model="product.category">
+            <field name="parent_id" ref="product_category_appointment"/>
+            <field name="name">Nails</field>
+            <field name="image" type="base64" file="website_custom/static/src/img/nails1.png"/>
+        </record>
+        <record id="product_category_lashes" model="product.category">
+            <field name="parent_id" ref="product_category_appointment"/>
+            <field name="name">Lashes</field>
+            <field name="image" type="base64" file="website_custom/static/src/img/lashes1.png"/>
+        </record>
+    </data>
+</odoo>

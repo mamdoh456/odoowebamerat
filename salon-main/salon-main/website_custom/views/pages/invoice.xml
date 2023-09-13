@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="invoice_appointment_book" name="Invoice appointment book">
+        <div class="invoice_book_initial">
+            <a href="/" t-attf-class="logo_invoice_book">
+                <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"
+                      t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
+            </a>
+            <div class="header_invoice_book">
+                <h5>Lapalma</h5>
+                <p>Uthman Ibn Affan Rd, 8113 2169, طريق عثمان بن عفان، الملك عبدالله، الرياض 12451,
+                    Riyadh
+                </p>
+            </div>
+            <div class="scroll_invoice_book">
+                <ul class="list_product_invoice_book" t-if="invoice['products']">
+                    <li t-foreach="invoice['products']" t-as="product">
+                        <input class="d-none" type="checkbox" checked="checked"
+                               t-attf-id="checkboxProduct#{product['id']}"
+                               t-att-value="product['id']" t-attf-name="checkboxProduct#{product['id']}"/>
+                        <div class="d-flex align-items-start">
+                            <div class="box_info_product">
+                                <p class="mb-1" t-esc="product['name']"/>
+                                <p class="text-muted m-0" style="font-size:12px">
+                                    <t t-if="product['staff_name']">Female only with
+                                        <t t-esc="product['staff_name']"/>
+                                    </t>
+                                </p>
+                                <p class="text-muted m-0" t-esc="product['date_time']" style="font-size:12px"/>
+                            </div>
+                            <div class="box_price_product ml-auto text-right">SAR
+                                <t t-esc="product['list_price']"/>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="no_service_selected text-muted text-center" t-else="">No services selected
+                    yet
+                </div>
+                <div class="footer_invoice_book">
+                    <div class="d-flex align-items-start">
+                        <h6>Total</h6>
+                        <h6 class="ml-auto text-right">
+                            <span itemprop="priceCurrency" t-esc="website.currency_id.name"/>
+                            <span t-esc="invoice['total']"/>
+                        </h6>
+                    </div>
+                </div>
+                <div class="border_circle_invoice"/>
+            </div>
+        </div>
+    </template>
+</odoo>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <template id="mini_invoice_book_personaldata" name="Invoice book staff">-->
+<!--        <div class="invoice_book_initial">-->
+<!--            <a href="/" t-attf-class="logo_invoice_book">-->
+<!--                <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"-->
+<!--                      t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>-->
+<!--            </a>-->
+<!--            <div class="header_invoice_book">-->
+<!--                <h5>Lapalma</h5>-->
+<!--                <p>Uthman Ibn Affan Rd, 8113 2169, طريق عثمان بن عفان، الملك عبدالله، الرياض 12451,-->
+<!--                    Riyadh-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="scroll_invoice_book">-->
+<!--                <ul class="list_product_invoice_book" t-if="invoice['products']">-->
+<!--                    <li t-foreach="invoice['products']" t-as="product">-->
+<!--                        <input class="d-none" type="checkbox" checked="checked"-->
+<!--                               t-attf-id="checkboxProduct#{product['id']}"-->
+<!--                               t-att-value="product['id']" t-attf-name="checkboxProduct#{product['id']}"/>-->
+<!--                        <div class="d-flex align-items-start">-->
+<!--                            <div class="box_info_product">-->
+<!--                                <p class="mb-1" t-esc="product['name']"/>-->
+<!--                                <p class="text-muted m-0">-->
+<!--                                    <t t-esc="product['date_time']"/>-->
+<!--                                    <t t-if="product['staff_name']">Female only with-->
+<!--                                        <t t-esc="product['staff_name']"/>-->
+<!--                                    </t>-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                            <div class="box_price_product ml-auto text-right">SAR-->
+<!--                                <t t-esc="product['list_price']"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                <div class="no_service_selected text-muted text-center" t-else="">No services selected-->
+<!--                    yet-->
+<!--                </div>-->
+<!--                <div class="footer_invoice_book">-->
+<!--                    <div class="d-flex align-items-start">-->
+<!--                        <h6>Total</h6>-->
+<!--                        <h6 class="ml-auto text-right">-->
+<!--                            <span itemprop="priceCurrency" t-esc="website.currency_id.name"/>-->
+<!--                            <span t-esc="invoice['total']"/>-->
+<!--                        </h6>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="border_circle_invoice"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </template>-->
+
+    <template id="appointment_booking_personaldata" name="Appointment booking personal data">
+        <t t-call="website.layout">
+
+            <t t-set="body_classname" t-value="'book_step_page'"/>
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div id="wrap">
+                <div class="header_booking_page">
+                    <div class="container">
+                        <div class="position-relative">
+                            <div class="prev_step_booking">
+                                <i class="fa fa-arrow-left"/>
+                            </div>
+                            <div class="close_booking">
+                                <a href="/">
+                                    <i class="fa fa-times"/>
+                                </a>
+                            </div>
+                            <div class="title_current_step">
+                                <span class="text-step">Step 4 of 4</span>
+                                <h3>Enter your information</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content_booking_page">
+                    <form t-attf-action="/save/appointment" method="post"
+                          role="form" id="form_personal_data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="coiffure_id" t-att-value="coiffure.id"/>
+                        <input type="hidden" name="slot_date" t-att-value="slot_date"/>
+                        <input type="hidden" name="schedule_slot_id" t-att-value="schedule_slot_id"/>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-lg-8">
+                                    <div class="card-box pos-sticky">
+                                        <div class="card-box-item ">
+                                            <div class="card-box-body">
+                                                <div class="form-group">
+                                                    <label for="inputfirstname">First Name</label>
+                                                    <input name="firstname" required="required"
+                                                           class="form-control d-block"
+                                                           placeholder="First Name. &#10;&#10;Example: Abdul Nasser"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputlastname">Last Name</label>
+                                                    <input name="lastname" required="required"
+                                                           class="form-control d-block"
+                                                           placeholder="Last Name. &#10;&#10;Example: Al-Amri"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputemail">Email</label>
+                                                    <input name="email" type="email" required="required"
+                                                           class="form-control d-block"
+                                                           placeholder="Email. &#10;&#10;Example: example@gmail.com"/>
+                                                </div>
+                                                <div class="form-group" id="mobile">
+                                                    <label for="inputmobile">Mobile</label>
+                                                    <input name="mobile" type="text" required="required"
+                                                           title="Please enter valid mobile number"
+                                                           class="form-control d-block"
+                                                           placeholder="Mobile. &#10;&#10;Example: +966xxxxxxxxx"/>
+                                                    <div id="validationMobileFeedback" class="invalid-feedback">
+                                                        Please enter valid mobile number.
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputBirthday">Birthday</label>
+                                                    <div class="input-group datetime"
+                                                         id="birthday"
+                                                         data-target-input="nearest">
+                                                        <input type="text"
+                                                               placeholder="Birthday. &#10;&#10;Example: xxxx/xx/xx"
+                                                               required="required"
+                                                               class="form-control datetimepicker-input"
+                                                               data-target="#birthday"
+                                                               name="birthday"/>
+                                                        <div class="input-group-append"
+                                                             data-target="#birthday"
+                                                             data-toggle="datetimepicker">
+                                                            <div class="input-group-text">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputlocation">Location</label>
+                                                    <input name="birthday" type="text" required="required"
+                                                           class="form-control d-block"
+                                                           placeholder="Mention your location by Google map url."/>
+                                                </div>
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-tripartite rounded-pill">
+                                                        Confirm
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 d-none d-lg-block">
+                                    <t t-call="website_custom.invoice_appointment_book"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

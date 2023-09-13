@@ -1,0 +1,10 @@
+
+Version 14.0.0.1 : (17/12/20)
+		- Add new functionality to allow coupon redeem for specific category for POS and website both.
+		- Add new functionality to allow coupon redeem for specific product for POS and website both.
+		- Add sale orders o2m in coupon view.
+		- Update code for coupon print report.
+
+Version 14.0.0.2: (05/01/21)
+		- Solve bug of maximum coupon usage limit from website.
+		- Remove commented code lines.

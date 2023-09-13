@@ -1,0 +1,5 @@
+14.0.0.1 --- 15-02-2023
+	Fix issue of sending mail on invoice confirm
+14.0.0.2 --- 15-02-2023
+	mark invoice policy as order
+	
